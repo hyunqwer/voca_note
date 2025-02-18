@@ -131,14 +131,25 @@ select#folderSelect:focus {
             color: white;
             font-weight: bold;
         }
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.header img {
+    width: 70px;
+    height: 70px;
+        }
     </style>
 </head>
 <body>
     <div class="audio_container">
-        <div class="logo-container">
-        <img src="https://sbt.yoons.com/images/txt/tit_logo.gif" alt="윤선생 로고" class="company-logo">
-</div>
+        <div class="header">
+        <img src="http://ylms.yoons.or.kr/assets/images/yoonlogo_main.svg" alt="윤선생 로고" class="company-logo">
         <div class="title">윤선생 어휘노트 음원 플레이어</div>
+</div>
         <select id="folderSelect" onchange="changeFolder()">
             <option value="Phonics">Phonics</option>
             <option value="Rookie & Rising Star">Rookie & Rising Star</option>
