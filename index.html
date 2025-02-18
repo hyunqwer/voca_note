@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>윤선생 어휘노트 음원 플레이어</title>
     <style>
+       .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; /* 제목과 간격 추가 */
+}
+
+        .company-logo {
+    max-width: 150px; /* 원하는 크기로 조정 */
+    height: auto;
+}
         :root {
             --seek-before-width: 0;
         }
@@ -124,6 +135,9 @@ select#folderSelect:focus {
 </head>
 <body>
     <div class="audio_container">
+        <div class="logo-container">
+        <img src="https://sbt.yoons.com/images/txt/tit_logo.gif" alt="윤선생 로고" class="company-logo">
+</div>
         <div class="title">윤선생 어휘노트 음원 플레이어</div>
         <select id="folderSelect" onchange="changeFolder()">
             <option value="Phonics">Phonics</option>
