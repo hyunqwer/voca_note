@@ -176,19 +176,52 @@ select#folderSelect:focus {
     }
 
     // 폴더별 파일 리스트 (객체 구조 정리)
-    const folderFiles = {
-        "Phonics": generateFileList("Phonics", Array.from({ length: 96 }, (_, i) => `${i * 10 + 1}~${(i + 1) * 10}`)),
-        "Rookie & Rising Star": [
-            ...generateFileList("Rookie", Array.from({ length: 12 }, (_, i) => `${i * 20 + 1}~${(i + 1) * 20}`)),
-            ...generateFileList("Rising Star 3", Array.from({ length: 16 }, (_, i) => `${244 + i * 20}~${263 + i * 20}`)),
-            ...generateFileList("Rising Star 4", Array.from({ length: 16 }, (_, i) => `${928 + i * 20}~${947 + i * 20}`))
-        ],
-        "All-Star & MVP": [
-            ...generateFileList("All-Star 5", Array.from({ length: 15 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
-            ...generateFileList("All-Star 6", Array.from({ length: 9 }, (_, i) => `${882 + i * 30}~${911 + i * 30}`)),
-            ...generateFileList("MVP 7", Array.from({ length: 8 }, (_, i) => `${1280 + i * 30}~${1309 + i * 30}`))
-        ]
-    };
+const folderFiles = {
+    "Phonics": generateFileList("Phonics", Array.from({ length: 96 }, (_, i) => `${i * 10 + 1}~${(i + 1) * 10}`)),
+
+    "Rookie & Rising Star": [
+        ...generateFileList("Rookie", Array.from({ length: 12 }, (_, i) => `${i * 20 + 1}~${(i + 1) * 20}`)),
+        ...generateFileList("Rising Star 3", Array.from({ length: 16 }, (_, i) => `${244 + i * 20}~${263 + i * 20}`)),
+        ...generateFileList("Rising Star 4", Array.from({ length: 16 }, (_, i) => `${928 + i * 20}~${947 + i * 20}`))
+    ],
+
+    "All-Star & MVP": [
+        ...generateFileList("All-Star 5", Array.from({ length: 15 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
+        ...generateFileList("All-Star 6", Array.from({ length: 9 }, (_, i) => `${882 + i * 30}~${911 + i * 30}`)),
+        ...generateFileList("MVP 7", Array.from({ length: 8 }, (_, i) => `${1280 + i * 30}~${1309 + i * 30}`))
+    ],
+
+    "중고등 Level 1~2": [
+        ...generateFileList("중고등 Level 1", Array.from({ length: 17 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
+        ...generateFileList("중고등 Level 1", ["511~538"]),
+        ...generateFileList("중고등 Level 2", Array.from({ length: 8 }, (_, i) => `${539 + i * 30}~${568 + i * 30}`)),
+        ...generateFileList("중고등 Level 2", ["983~1065"])
+    ],
+
+    "중고등 Level 3~4": [
+        ...generateFileList("중고등 Level 3", Array.from({ length: 20 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
+        ...generateFileList("중고등 Level 3", ["601~612"]),
+        ...generateFileList("중고등 Level 4", Array.from({ length: 16 }, (_, i) => `${613 + i * 30}~${642 + i * 30}`)),
+        ...generateFileList("중고등 Level 4", ["1063~1075"])
+    ],
+
+    "중고등 Level 5~6": [
+        ...generateFileList("중고등 Level 5", Array.from({ length: 22 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
+        ...generateFileList("중고등 Level 5", ["751~759"]),
+        ...generateFileList("중고등 Level 6", Array.from({ length: 16 }, (_, i) => `${817 + i * 30}~${846 + i * 30}`)),
+        ...generateFileList("중고등 Level 6", ["1507~1514"])
+    ],
+
+    "중고등 Level 7~9": [
+        ...generateFileList("중고등 Level 7", Array.from({ length: 27 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
+        ...generateFileList("중고등 Level 7", ["811~824"]),
+        ...generateFileList("중고등 Level 8", Array.from({ length: 16 }, (_, i) => `${825 + i * 30}~${854 + i * 30}`)),
+        ...generateFileList("중고등 Level 8", ["1474~1475"]),
+        ...generateFileList("중고등 Level 9", Array.from({ length: 9 }, (_, i) => `${1476 + i * 30}~${1505 + i * 30}`)),
+        ...generateFileList("중고등 Level 9", ["1836~1840"])
+    ]
+};
+
 
     // 폴더 변경 시 오디오 리스트 업데이트
     function changeFolder() {
