@@ -4,53 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>윤선생 어휘노트 음원 플레이어</title>
-    <style>
-       .logo-container {
+<style>
+/* 전역 스타일 */
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px; /* 제목과 간격 추가 */
+    height: 100vh;
+    background: linear-gradient(45deg, #FFC2C2, #FFE7C2);
+    font-family: 'NanumGothic', Arial, sans-serif;
+    margin: 0;
 }
 
-        .company-logo {
-    max-width: 95px; /* 원하는 크기로 조정 */
-    height: auto;
+/* 헤더 및 로고 */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
-        :root {
-            --seek-before-width: 0;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(45deg, #FFC2C2, #FFE7C2);
-            font-family: 'NanumGothic', Arial, sans-serif;
-            margin: 0;
-        }
-        .title {
-            font-size: 23px;
-            font-weight: bold;
-            color: #696969;
-            margin-bottom: 12px;
-        }
-        #currentTrack {
-            font-weight: bold;
-            color: #49BBBD;
-            margin-bottom: 10px;
-        }
-        .audio_container {
-            width: 90%;
-            max-width: 400px;
-            background-color: rgba(255,255,255, 0.6);
-            border-radius: 20px;
-            padding: 40px 20px; /* 위아래 패딩 증가 */
-            text-align: center;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
+
+.header img {
+    width: 70px;
+}
+
+/* 제목 스타일 */
+.title {
+    font-size: 23px;
+    font-weight: bold;
+    color: #696969;
+    margin-bottom: 12px;
+}
+
+#currentTrack {
+    font-weight: bold;
+    color: #49BBBD;
+    margin-bottom: 10px;
+}
+
+/* 오디오 플레이어 컨테이너 */
+.audio_container {
+    width: 90%;
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 오디오 스타일 */
+audio {
+    width: 90%;
+    max-width: 460px;
+    display: block;
+    margin: 10px auto;
+}
+
+/* 시간 표시 */
+.time-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 0 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* 드롭다운 스타일 */
 select#folderSelect {
     width: 100%;
-    max-width: 200px; /* 가로 크기 제한 */
+    max-width: 200px;
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
@@ -59,89 +84,58 @@ select#folderSelect {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    appearance: none; /* 기본 드롭다운 UI 제거 */
+    appearance: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-/* 드롭다운 화살표 스타일 개선 */
-select#folderSelect:after {
-    content: '▼'; /* 화살표 추가 */
-    font-size: 12px;
-    position: absolute;
-    right: 10px;
-    color: #888;
-}
-
 /* 호버 및 포커스 효과 */
-select#folderSelect:hover {
-    border-color: #49BBBD;
-    box-shadow: 0px 0px 8px rgba(73, 187, 189, 0.5);
-}
-
+select#folderSelect:hover,
 select#folderSelect:focus {
     border-color: #49BBBD;
+    box-shadow: 0px 0px 8px rgba(73, 187, 189, 0.5);
     outline: none;
-    box-shadow: 0px 0px 3px rgba(73, 187, 189, 0.8);
 }
-        audio {
-            width: 90%; /* 기존보다 30% 더 길게 설정 */
-            max-width: 460px;
-            display: block;
-            margin: 10px auto;
-        }
-        .time-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            padding: 0 15px;
-            font-size: 14px;
-            color: #333;
-        }
-        .playlist {
-            width: 85%;
-            max-height: 375px;
-            overflow-y: auto;
-            margin: 20px auto 0 auto; /* 좌우 마진을 auto로 설정하여 중앙 정렬 */
-            padding: 10px;
-            background: rgba(255,255,255, 0.8);
-            border-radius: 10px;
-            box-shadow: 1px 1px 4px rgba(0,0,0, 0.25);
-        }
-        .playlist ul {
-            padding: 0;
-            margin: 0;
-        }
-        .playlist li {
-            list-style: none;
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
-            font-size: 15px;
-            color: #7C7C7C;
-            display: flex;
-            justify-content: space-between;
-        }
-        .playlist li:hover {
-            background: rgba(240,240,240, 0.8);
-        }
-        .playlist li.active {
-            background: rgba(13, 120, 122, 0.8);
-            color: white;
-            font-weight: bold;
-        }
-.header {
+
+/* 플레이리스트 스타일 */
+.playlist {
+    width: 85%;
+    max-height: 375px;
+    overflow-y: auto;
+    margin: 20px auto 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.playlist ul {
+    padding: 0;
+    margin: 0;
+}
+
+.playlist li {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 15px;
+    color: #7C7C7C;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    justify-content: space-between;
 }
-.header img {
-    width: 70px;
-        }
-    </style>
+
+.playlist li:hover {
+    background: rgba(240, 240, 240, 0.8);
+}
+
+.playlist li.active {
+    background: rgba(13, 120, 122, 0.8);
+    color: white;
+    font-weight: bold;
+}
+</style>
+
 </head>
 <body>
     <div class="audio_container">
