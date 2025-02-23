@@ -1,285 +1,36 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>윤선생 어휘노트 음원 플레이어</title>
-<style>
-    /* 폰트 임포트: 필요에 따라 다른 폰트로 교체 가능 */
-    @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
- 
-    /* 전역 스타일 */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(45deg, #FFC2C2, #FFE7C2);
-    font-family: 'Nanum Gothic', Arial, sans-serif;
-    margin: 0;
-}
-
-/* 헤더 및 로고 */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.header img {
-    width: 70px;
-}
-
-/* 제목 스타일 */
-.title {
-    font-size: 23px;
-    font-weight: bold;
-    color: #696969;
-    margin-bottom: 12px;
-}
-
-#currentTrack {
-    font-weight: bold;
-    color: #49BBBD;
-    margin-bottom: 10px;
-}
-
-/* 오디오 플레이어 컨테이너 */
-.audio_container {
-    width: 90%;
-    max-width: 400px;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* 오디오 스타일 */
-audio {
-    width: 90%;
-    max-width: 460px;
-    display: block;
-    margin: 10px auto;
-}
-
-/* 시간 표시 */
-.time-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
-    padding: 0 15px;
-    font-size: 14px;
-    color: #333;
-}
-
-/* 드롭다운 스타일 */
-select#folderSelect {
-    width: 100%;
-    max-width: 200px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #4a4a4a;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    appearance: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-/* 호버 및 포커스 효과 */
-select#folderSelect:hover,
-select#folderSelect:focus {
-    border-color: #49BBBD;
-    box-shadow: 0px 0px 8px rgba(73, 187, 189, 0.5);
-    outline: none;
-}
-
-/* 플레이리스트 스타일 */
-.playlist {
-    width: 85%;
-    max-height: 375px;
-    overflow-y: auto;
-    margin: 20px auto 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-}
-
-.playlist ul {
-    padding: 0;
-    margin: 0;
-}
-
-.playlist li {
-    list-style: none;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-    font-size: 15px;
-    color: #7C7C7C;
-    display: flex;
-    justify-content: space-between;
-}
-
-.playlist li:hover {
-    background: rgba(240, 240, 240, 0.8);
-}
-
-.playlist li.active {
-    background: rgba(13, 120, 122, 0.8);
-    color: white;
-    font-weight: bold;
-}
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>윤선생 어휘노트 음원 플레이어 (업그레이드)</title>
+  <!-- 분리한 CSS 파일을 링크합니다 -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="audio_container">
-        <div class="header">
-        <img src="https://www.yoons.com/image/about/vision/ci.jpg" alt="윤선생 로고" class="company-logo">
-        <div class="title">윤선생 어휘노트 음원 플레이어</div>
-</div>
-        <select id="folderSelect" onchange="changeFolder()">
-            <option value="Phonics">Phonics</option>
-            <option value="Rookie & Rising Star">Rookie & Rising Star</option>
-            <option value="All-Star & MVP">All-Star & MVP</option>
-            <option value="중고등 Level 1~2">중고등 Level 1~2</option>
-            <option value="중고등 Level 3~4">중고등 Level 3~4</option>
-            <option value="중고등 Level 5~6">중고등 Level 5~6</option>
-            <option value="중고등 Level 7~9">중고등 Level 7~9</option>
-        </select>
-        <p id="currentTrack">현재 재생 중: 없음</p>
-        <audio id="audioPlayer" controls></audio>
-        <div class="playlist">
-            <ul id="audioList"></ul>
-        </div>
+  <div class="audio_container">
+    <div class="header">
+      <img src="https://www.yoons.com/image/about/vision/ci.jpg" alt="윤선생 로고" class="company-logo" />
+      <div class="title">윤선생 어휘노트 음원 플레이어</div>
     </div>
-<script>
-    const baseFolderPath = "https://app.yoons.com/mobile/beflwords/vocanote/";
-    let audioFiles = [];
-    let currentFolder = "Phonics";
-    let currentIndex = 0;
+    <select id="folderSelect">
+      <option value="Phonics">Phonics</option>
+      <option value="Rookie & Rising Star">Rookie & Rising Star</option>
+      <option value="All-Star & MVP">All-Star & MVP</option>
+      <option value="중고등 Level 1~2">중고등 Level 1~2</option>
+      <option value="중고등 Level 3~4">중고등 Level 3~4</option>
+      <option value="중고등 Level 5~6">중고등 Level 5~6</option>
+      <option value="중고등 Level 7~9">중고등 Level 7~9</option>
+    </select>
+    <p id="currentTrack">현재 재생 중: 없음</p>
+    <audio id="audioPlayer" controls></audio>
 
-    // HTML 요소 캐싱
-    const folderSelect = document.getElementById("folderSelect");
-    const audioPlayer = document.getElementById("audioPlayer");
-    const currentTrackLabel = document.getElementById("currentTrack");
-    const audioList = document.getElementById("audioList");
+    <div class="playlist">
+      <ul id="audioList"></ul>
+    </div>
+  </div>
 
-    // 폴더별 파일 리스트 생성 함수 (데이터 구조를 더 단순화)
-    function generateFileList(prefix, ranges) {
-        return ranges.map(range => `${prefix}_${range}.mp3`);
-    }
-
-    // 폴더별 파일 리스트 (객체 구조 정리)
-const folderFiles = {
-    "Phonics": generateFileList("Phonics", Array.from({ length: 96 }, (_, i) => `${i * 10 + 1}~${(i + 1) * 10}`)),
-
-    "Rookie & Rising Star": [
-        ...generateFileList("Rookie", Array.from({ length: 12 }, (_, i) => `${i * 20 + 1}~${(i + 1) * 20}`)),
-        ...generateFileList("Rising Star 3", Array.from({ length: 16 }, (_, i) => `${244 + i * 20}~${263 + i * 20}`)),
-        ...generateFileList("Rising Star 4", Array.from({ length: 16 }, (_, i) => `${928 + i * 20}~${947 + i * 20}`))
-    ],
-
-    "All-Star & MVP": [
-        ...generateFileList("All-Star 5", Array.from({ length: 15 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
-        ...generateFileList("All-Star 6", Array.from({ length: 9 }, (_, i) => `${882 + i * 30}~${911 + i * 30}`)),
-        ...generateFileList("MVP 7", Array.from({ length: 8 }, (_, i) => `${1280 + i * 30}~${1309 + i * 30}`))
-    ],
-
-    "중고등 Level 1~2": [
-        ...generateFileList("중고등 Level 1", Array.from({ length: 17 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
-        ...generateFileList("중고등 Level 1", ["511~538"]),
-        ...generateFileList("중고등 Level 2", Array.from({ length: 8 }, (_, i) => `${539 + i * 30}~${568 + i * 30}`)),
-        ...generateFileList("중고등 Level 2", ["983~1065"])
-    ],
-
-    "중고등 Level 3~4": [
-        ...generateFileList("중고등 Level 3", Array.from({ length: 20 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
-        ...generateFileList("중고등 Level 3", ["601~612"]),
-        ...generateFileList("중고등 Level 4", Array.from({ length: 16 }, (_, i) => `${613 + i * 30}~${642 + i * 30}`)),
-        ...generateFileList("중고등 Level 4", ["1063~1075"])
-    ],
-
-    "중고등 Level 5~6": [
-        ...generateFileList("중고등 Level 5", Array.from({ length: 22 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
-        ...generateFileList("중고등 Level 5", ["751~759"]),
-        ...generateFileList("중고등 Level 6", Array.from({ length: 16 }, (_, i) => `${817 + i * 30}~${846 + i * 30}`)),
-        ...generateFileList("중고등 Level 6", ["1507~1514"])
-    ],
-
-    "중고등 Level 7~9": [
-        ...generateFileList("중고등 Level 7", Array.from({ length: 27 }, (_, i) => `${i * 30 + 1}~${(i + 1) * 30}`)),
-        ...generateFileList("중고등 Level 7", ["811~824"]),
-        ...generateFileList("중고등 Level 8", Array.from({ length: 16 }, (_, i) => `${825 + i * 30}~${854 + i * 30}`)),
-        ...generateFileList("중고등 Level 8", ["1474~1475"]),
-        ...generateFileList("중고등 Level 9", Array.from({ length: 9 }, (_, i) => `${1476 + i * 30}~${1505 + i * 30}`)),
-        ...generateFileList("중고등 Level 9", ["1836~1840"])
-    ]
-};
-
-
-    // 폴더 변경 시 오디오 리스트 업데이트
-    function changeFolder() {
-        currentFolder = folderSelect.value;
-        audioFiles = folderFiles[currentFolder] || [];
-        currentIndex = 0;
-        updatePlaylistView();
-    }
-
-    // 트랙 재생
-    function playTrack(index) {
-        if (index >= 0 && index < audioFiles.length) {
-            currentIndex = index;
-            audioPlayer.src = `${baseFolderPath}${currentFolder}/${audioFiles[currentIndex]}`;
-            currentTrackLabel.textContent = `현재 재생 중: ${audioFiles[currentIndex]}`;
-            updatePlaylistView();
-            audioPlayer.play();
-        }
-    }
-
-    // 다음 트랙 재생
-    function playNextTrack() {
-        if (currentIndex + 1 < audioFiles.length) {
-            playTrack(currentIndex + 1);
-        }
-    }
-
-    // 플레이리스트 업데이트
-    function updatePlaylistView() {
-        audioList.innerHTML = "";
-        audioFiles.forEach((file, i) => {
-            const li = document.createElement("li");
-            li.textContent = file;
-            li.onclick = () => playTrack(i);
-            if (i === currentIndex) li.classList.add("active");
-            audioList.appendChild(li);
-        });
-    }
-
-    // 이벤트 리스너 초기화
-    function initEventListeners() {
-        audioPlayer.addEventListener("ended", playNextTrack);
-        folderSelect.addEventListener("change", changeFolder);
-    }
-
-    // 초기화
-    function init() {
-        initEventListeners();
-        changeFolder();
-    }
-
-    init();
-</script>
-
-
-
+  <!-- 분리한 JS 파일을 불러옵니다 -->
+  <script src="script.js"></script>
 </body>
 </html>
