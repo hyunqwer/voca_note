@@ -90,8 +90,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     const initEventListeners = () => {
-        audioPlayer.addEventListener("ended", playNextTrack);
-        folderSelect.addEventListener("change", changeFolder);
+const playNextTrack = () => {
+    // 아무것도 안 함 (연속재생 중지)
+};        folderSelect.addEventListener("change", changeFolder);
     };
 
     const init = () => {
