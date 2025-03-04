@@ -15,7 +15,7 @@ async function loadFolderFiles() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const baseFolderPath = "https://app.yoons.com/mobile/beflwords/vocanote/";
+    const baseFolderPath = "https://app.yoons.com/mobile/vocanote/";
     const folderSelect = document.getElementById("folderSelect");
     const audioPlayer = document.getElementById("audioPlayer");
     const currentTrackLabel = document.getElementById("currentTrack");
