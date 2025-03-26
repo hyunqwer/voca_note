@@ -103,3 +103,13 @@ const playNextTrack = () => {
     init();
     console.log("[DEBUG] folderFiles", folderFiles);
 });
+
+// 첫 접속 시 폴더 선택 안내 팝업 (로컬스토리지 이용)
+document.addEventListener('DOMContentLoaded', () => {
+    const firstVisit = localStorage.getItem('isFirstVisit');
+
+    if (!firstVisit) {
+        alert('상단에서 원하는 단계를 선택해 주세요.');
+        localStorage.setItem('isFirstVisit', 'true');
+    }
+});
