@@ -128,7 +128,7 @@ select#folderSelect {
   border: 1px solid #ddd; 
   border-radius: 8px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  appearance: auto; 
+  appearance: none; 
   cursor: pointer; 
   transition: all 0.3s ease-in-out;
 }
