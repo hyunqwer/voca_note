@@ -113,3 +113,38 @@ select#folderSelect:focus {
   box-shadow: 0px 0px 8px rgba(73, 187, 189, 0.5); 
   outline: none;
 }
+
+/* 말풍선 안내 박스 스타일 */
+.tooltip-box {
+  position: relative;
+  width: fit-content;
+  max-width: 250px;
+  margin: 0 auto 10px auto;
+  padding: 10px 15px;
+  background-color: #FFFDE7;
+  border: 1px solid #FFECB3;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  font-size: 14px;
+  color: #616161;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tooltip-text {
+  flex-grow: 1;
+}
+
+.close-btn {
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #616161;
+}
