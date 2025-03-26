@@ -35,6 +35,32 @@ html, body {
   transition: color 0.3s ease;
 }
 
+.folder-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.folder-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #fff url('data:image/svg+xml;utf8,<svg fill="%234a4a4a" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+  background-size: 16px 16px;
+  padding-right: 30px;
+}
+
+.dropdown-hint {
+  font-size: 14px;
+  color: #4a4a4a;
+  font-weight: 500;
+  background: #fff3cd;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #ffeeba;
+}
 .audio_container {
   width: 90%; 
   max-width: 400px;
