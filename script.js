@@ -105,41 +105,6 @@ const playNextTrack = () => {
 });
 
 
-//안내박스 추가부분
-document.addEventListener('DOMContentLoaded', () => {
-    const tooltip = document.getElementById('guideTooltip');
-    const closeBtn = document.getElementById('closeTooltip');
-    const folderSelect = document.getElementById('folderSelect');
 
-    // 로컬스토리지에 저장된 안내박스 닫기 여부 체크
-    const isTooltipClosed = localStorage.getItem('isTooltipClosed');
-
-    // 로컬스토리지에 저장된 상태가 없다면 안내박스를 처음에 보이도록 설정
-    if (isTooltipClosed === 'true') {
-        tooltip.style.display = 'none';
-    } else {
-        tooltip.style.display = 'flex';
-    }
-
-    // 안내박스 닫기 버튼 이벤트 처리
-    closeBtn.addEventListener('click', () => {
-        tooltip.style.display = 'none';
-        localStorage.setItem('isTooltipClosed', 'true');
-    });
-
-    // select 요소에 마우스오버 시 안내박스 보이기 (닫지 않은 경우만)
-    folderSelect.addEventListener('mouseover', () => {
-        if (localStorage.getItem('isTooltipClosed') !== 'true') {
-            tooltip.style.display = 'flex';
-        }
-    });
-
-    // 마우스가 select 요소를 벗어나면 안내박스 자동으로 숨기기
-    folderSelect.addEventListener('mouseleave', () => {
-        if (localStorage.getItem('isTooltipClosed') !== 'true') {
-            tooltip.style.display = 'none';
-        }
-    });
-});
 
 
